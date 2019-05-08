@@ -24,9 +24,18 @@ This plugin offers an interface from XL Release to Hp/Microfocus ALM.
 ./gradlew clean build
 ```
 
+## Testing the plugin
+
+Run the following command to run a local docker container with the plugin installed.  
 ```
 ./gradlew runDockerCompose
 ```
+Per the configuration at `src/test/resources/docker/docker-compose.yml,` the ports are defined so you can browse the local instance at:
+
+```
+http://localhost:35516
+``` 
+
 
 ## Overview
 
