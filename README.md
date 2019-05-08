@@ -4,11 +4,7 @@
 [![Codacy](https://api.codacy.com/project/badge/Grade/71d5adb3b2634edc875bd8c73cc3f24b)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xebialabs-community/xlr-hpalm-plugin&amp;utm_campaign=Badge_Grade)
 [![License: MIT][xlr-hpalm-plugin-license-image] ][xlr-hpalm-plugin-license-url]
 [![Github All Releases][xlr-hpalm-plugin-downloads-image] ]()
-
-<!-- Code Climate works well with public repositories.  We need to pay $ to add private repositories 
 [![Code Climate][xlr-hpalm-plugin-code-climate-image] ][xlr-hpalm-plugin-code-climate-url]
--->
-
 
 [xlr-hpalm-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xlr-hpalm-plugin.svg?branch=master
 [xlr-hpalm-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xlr-hpalm-plugin
