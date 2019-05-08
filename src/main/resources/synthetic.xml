@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+ Copyright 2019 XEBIALABS
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <type type="alm.Server" extends="configuration.HttpConnection" label="HP ALM: Server">
+        <property name="checkConfigurationPath" hidden="true" default="/qcbin"/>
+        <property name="scriptLocation" hidden="true" default="alm/TestConnection.py"/>
+        <property name="enableSslVerification" kind="boolean" category="Authentication" default="false" />
+    </type>
+
+
+    <type type="alm.Task" extends="xlrelease.PythonScript" virtual="true">
+        <!-- Plugin -->
+        <property name="iconLocation" hidden="true" default="alm/alm.png"/>
+        <property name="taskColor" hidden="true" default="#0075A9"/>
+        <property name="server" category="input" label="Server" description="The alm server definition to use" required="true" referenced-type="alm.Server" kind="ci"/>
+
+
+    </type>
+
+    <type type="alm.Login" extends="alm.Task">
+        <property name="username" category="input" required="false" />
+        <property name="password" password="true" category="input" required="false" />
+        <!-- outputs -->
+        <property name="cookies" password="true" category="output" required="false" label="Auth Cookies" description="Cookies for the user session. Set it into a variable and use the variable in other tasks" />
+    </type>
+    <type type="alm.Logout" extends="alm.Task">
+        <property name="username" category="input" required="false" />
+        <property name="password" password="true" category="input" required="false" />
+    </type>
+    <type type="alm.CreateDefect" extends="alm.Task">
+        <!-- Input -->
+        <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
+        <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
+        <property name="title" category="input" label="Defect Name" description="Title for the Defect" />
+        <property name="description" category="input" label="Defect Description" description="Description for the Defect" />
+        <property name="priority" category="input" label="Defect Priority" description="Priority for the Defect. eg 4-Very High" />
+        <property name="severity" category="input" label="Defect Severity" description="Severity for the Defect. eg 2-Medium" />
+        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
+        <property name="output" category="output"/>
+        <property name="defectId" category="output" />
+    </type>  
+
+    <type type="alm.UpdateDefect" extends="alm.Task">
+        <!-- Input -->
+        <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
+        <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
+        <property name="defectId" category="input" required="false" label="Defect Id" description="ID for the Defect" />        
+        <property name="title" category="input" required="false" label="Defect Name" description="Title for the Defect" />
+        <property name="description" category="input" required="false" label="Defect Description" description="Description for the Defect" />
+        <property name="comment" category="input" required="false" label="Comment" description="Comment for the Defect." />
+        <property name="status" category="input" required="false" label="Status" description="Status for the Defect. eg. Fixed" />
+        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
+        <property name="output" category="output"/>
+        <property name="defectId" category="output" />
+    </type>  
+
+   <type type="alm.GetDefect" extends="alm.Task">
+        <!-- Input -->
+        <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
+        <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
+        <property name="defectId" category="input" required="false" label="Defect Id" description="ID for the Defect" />
+        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
+        <property name="output" category="output"/>
+    </type>  
+
+   <type type="alm.DeleteDefect" extends="alm.Task">
+        <!-- Input -->
+        <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
+        <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
+        <property name="defectId" category="input" required="false" label="Defect Id" description="ID for the Defect" />
+        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
+        <property name="output" category="output"/>
+    </type>
+
+    <type type="alm.PollQueryForStatus" extends="alm.Task" >
+        <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
+        <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
+        <property name="query" category="input" required="true" label="Query for finding records" description="eg. {id[>=1 And NOT = 5]},  eg. {status[(NOT Ready or Design]} " />
+        <property name="pollingInterval" category="input" required="true" default="10" description="Polling Interval" />
+        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
+
+    </type>  
+    <!-- ============ UI extensions: ============ -->
+
+    <type type="alm.QueryTile" label="ALM query tile" extends="xlrelease.Tile">
+        <property name="uri" hidden="true" default="include/ALMQueryTile/alm-query-summary-view.html"/>
+        <property name="detailsUri" hidden="true"
+                  default="include/ALMQueryTile/alm-query-details-view.html"/>
+        <property name="title" description="Tile title" default="ALM tests instances"/>
+        <property name="embedded" kind="boolean" hidden="true" default="true"
+                  required="false"/>  
+        <property category="input" name="almServer" referenced-type="alm.Server" kind="ci" label="Server"
+                  description="ALM server id to connect to"/>
+        <property category="input" name="username" required="false"
+                  description="Overrides the username used to connect to the server"/>
+        <property category="input" name="password" password="true" required="false"
+                  description="Overrides the password used to connect to the server"/>
+        <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
+        <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />                      
+        <property category="input" name="query" required="false" size="large" description="ALM release cycle query eg. {release-cycle.name[&quot;Iteration 2.1&quot;]}&amp;fields=id,name" />
+    </type>
+
+
+</synthetic>
