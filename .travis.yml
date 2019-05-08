@@ -7,13 +7,12 @@ jdk:
 deploy:
   provider: releases
   file_glob: true
-  file: build/libs/*
+  file: build/libs/xlr-*.jar
   skip_cleanup: true
   on:
     repo: xebialabs-community/xlr-hpalm-plugin
     all_branches: true
     tags: true
-    branch: master
   api_key:
     secure: cElqm+WaK1uqx4pAJYreUn79AXOJlv7xCSdIRpulOcBic1diGX0aBjlbolEYZKqlPSO9rc2dJCyYCcPdsNDaIOsPHFLikOUfIL2XwbZjdnjA7HKIc+I4Jd47maPyH4vcqj7VH2saeE1hQrUbgBzP78uDOXzokqnBL0fg67BmQeOzHTNB0DdlfN8PZgMA2djy09nj3zz+c/4WPz6qjpt5tmV988hSG4JlU13r68EzFL6z/JS41L+KatdW2HpR/ueSDcs++5NgwNgzfCFp2d9xgxea0OvfZVAIY8DbVccJQ0d7VQDdINRa+zGkEExTbOzrglM0sZU1tTYanQOPRQoy5qXCl5eHzDk6mVsIvjD3dBJjQC+twNQVSZLs07EIh2ijYRfUrsbMQprO7QQdFyGVYeKaAW/eRoU+fuIgwsjlgIlUpdDMxDb7AeKwe2+Ez8fNPwbb7otUFQ+Er45UzBk14Br7YAwPBEfRU9TgNVh0NSrmhd5tmRqHh+8lvRs5x6tyScUFh+6e+SFFK16lHh5Kg19qXle7VSnOiHjM0Y7txYRWlVveFKRskGM4T+p0KyOli58kRQnovv0PogjETCDqGMvuzgRDAbNFGDQEvvbh8pjlXrq8+zFkagTdKHOeAa3xLhokd3W3+iXrnQ9bXAbhhuN20YXj0kfJyGTaAbHU7WY=
 env:
