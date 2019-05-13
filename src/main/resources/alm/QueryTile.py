@@ -16,9 +16,9 @@ if not almServer:
 def get_row_data(item):
     row_map = {}
     for field in test_instance['Fields']:
-    	row_map[field['Name']] = field['values'][0]['value'] 
+        row_map[field['Name']] = field['values'][0]['value']
     return row_map
-    
+
 print "Performing Login"
 alm_client = almClientUtil.create_alm_client(almServer, username, password)
 result = alm_client.login()
@@ -28,10 +28,10 @@ test_sets = alm_client.query_status(domain, project,"test-sets", query)
 rows= {}
 print "Now finding test intsances under each test set"
 for item in test_sets['entities']:
-	testset_id = item['Fields'][0]['values'][0]['value']
-	test_instances = alm_client.query_status(domain, project,"test-instances", "{test-set.id[%s]}&fields=id,status,name,owner" % testset_id)
-	for test_instance in test_instances['entities']:
-		test_instance_obj = get_row_data(test_instance)
-		rows[test_instance_obj['id']] = test_instance_obj
+    testset_id = item['Fields'][0]['values'][0]['value']
+    test_instances = alm_client.query_status(domain, project,"test-instances", "{test-set.id[%s]}&fields=id,status,name,owner" % testset_id)
+    for test_instance in test_instances['entities']:
+        test_instance_obj = get_row_data(test_instance)
+        rows[test_instance_obj['id']] = test_instance_obj
 
 data = rows
