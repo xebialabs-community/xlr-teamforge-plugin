@@ -48,9 +48,9 @@ Each entry has the following configuration items in its definition:
 ![SharedConfiguration](images/hpalm-login.PNG)
 
 ##### Basics
-*  Title - the name by which you will be referring to this definition in your XLR tasks and dashboard tiles.
-*  URL - The URL of the HP ALM server
-*  Authentication Method - None, Basic, Ntlm, PAT
+*   Title - the name by which you will be referring to this definition in your XLR tasks and dashboard tiles.
+*   URL - The URL of the HP ALM server
+*   Authentication Method - None, Basic, Ntlm, PAT
 
 ##### Authentication
 *  Username
