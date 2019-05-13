@@ -16,26 +16,26 @@
         var tile;
 
         var predefinedColors = [];
-        predefinedColors['De-Scoped'] = '#7E827A';
-        predefinedColors['Failed'] = '#4AA0C8';
-        predefinedColors['N/A'] = '#FFA500';
-        predefinedColors['No Run'] = '#7E8AA2';
-        predefinedColors['Not Completed'] = '#7FB2F0';
-        predefinedColors['Not Covered'] = '#45BF55';
-        predefinedColors['Passed'] = '#FFE11A';
-        predefinedColors['Reclassed_ProdDefect'] = '#FFA500';
+        predefinedColors['De-Scoped'] = "#7E827A";
+        predefinedColors['Failed'] = "#4AA0C8";
+        predefinedColors['N/A'] = "#FFA500";
+        predefinedColors['No Run'] = "#7E8AA2";
+        predefinedColors['Not Completed'] = "#7FB2F0";
+        predefinedColors['Not Covered'] = "#45BF55";
+        predefinedColors['Passed'] = "#FFE11A";
+        predefinedColors['Reclassed_ProdDefect'] = "#FFA500";
 
 
         var colorPool = [
-            '#B85C5A',
-            '#35203B',
-            '#644D52',
-            '#8E2800',
-            '#FF8598',
-            '#FF6F69',
-            '#F77A52',
-            '#FCD364',
-            '#FFE11A'
+            "#B85C5A",
+            "#35203B",
+            "#644D52",
+            "#8E2800",
+            "#FF8598",
+            "#FF6F69",
+            "#F77A52",
+            "#FCD364",
+            "#FFE11A"
         ];
 
 
@@ -80,7 +80,7 @@
             bottomTitleText: getTitle,
             series: function (data) {
                 var series = {
-                    name: 'Status',
+                    name: "Status",
                     data: []
                 };
                 series.data = _.map(data.data, function (value) {
@@ -89,7 +89,7 @@
                 return [ series ];
             },
             showLegend: false,
-            donutThickness: '60%'
+            donutThickness: "60%"
         };
 
         function load(config) {
@@ -150,7 +150,7 @@
                         cellTemplate: "static/@project.version@/include/ALMQueryTile/grid/number-cell-template.html",
                         filterHeaderTemplate: filterHeaderTemplate,
                         enableColumnMenu: false,
-                        width: '18%'
+                        width: "18%"
                     },
                     {
                         displayName: "Name",
@@ -158,7 +158,7 @@
                         cellTemplate: "static/@project.version@/include/ALMQueryTile/grid/short-description-cell-template.html",
                         filterHeaderTemplate: filterHeaderTemplate,
                         enableColumnMenu: false,
-                        width: '43%'
+                        width: "43%"
                     },
                     {
                         displayName: "Status",
@@ -166,7 +166,7 @@
                         cellTemplate: "static/@project.version@/include/ALMQueryTile/grid/state-cell-template.html",
                         filterHeaderTemplate: filterHeaderTemplate,
                         enableColumnMenu: false,
-                        width: '19%'
+                        width: "19%"
                     },
                     {
                         displayName: "Owner",
@@ -174,7 +174,7 @@
                         cellTemplate: "static/@project.version@/include/ALMQueryTile/grid/assigned-to-cell-template.html",
                         filterHeaderTemplate: filterHeaderTemplate,
                         enableColumnMenu: false,
-                        width: '20%'
+                        width: "20%"
                     }
                 ];
             return XlrTileHelper.getGridOptions(almData, columnDefs);
@@ -189,7 +189,7 @@
         vm.refresh = refresh;
     };
 
-    ALMQueryTileViewController.$inject = ['$scope', 'xlrelease.alm.ALMQueryService', 'XlrTileHelper'];
+    ALMQueryTileViewController.$inject = ['$scope', "xlrelease.alm.ALMQueryService", "XlrTileHelper"];
 
     var ALMQueryService = function (Backend) {
 
@@ -201,11 +201,11 @@
         };
     };
 
-    ALMQueryService.$inject = ['Backend'];
+    ALMQueryService.$inject = ["Backend"];
 
-    angular.module('xlrelease.alm.tile', []);
-    angular.module('xlrelease.alm.tile').service('xlrelease.alm.ALMQueryService', ALMQueryService);
-    angular.module('xlrelease.alm.tile').controller('alm.ALMQueryTileViewController', ALMQueryTileViewController);
+    angular.module("xlrelease.alm.tile", []);
+    angular.module("xlrelease.alm.tile").service("xlrelease.alm.ALMQueryService", ALMQueryService);
+    angular.module("xlrelease.alm.tile").controller("alm.ALMQueryTileViewController", ALMQueryTileViewController);
 
 })();
 
