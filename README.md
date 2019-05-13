@@ -1,18 +1,10 @@
 ## Build Status
 
-[![Build Status][xlr-hpalm-plugin-travis-image] ][xlr-hpalm-plugin-travis-url]
+[![Build Status][xlr-hpalm-plugin-travis-image]][xlr-hpalm-plugin-travis-url]
 [![Codacy](https://api.codacy.com/project/badge/Grade/71d5adb3b2634edc875bd8c73cc3f24b)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xebialabs-community/xlr-hpalm-plugin&amp;utm_campaign=Badge_Grade)
-[![License: MIT][xlr-hpalm-plugin-license-image] ][xlr-hpalm-plugin-license-url]
-[![Github All Releases][xlr-hpalm-plugin-downloads-image] ]()
-[![Code Climate][xlr-hpalm-plugin-code-climate-image] ][xlr-hpalm-plugin-code-climate-url]
-
-[xlr-hpalm-plugin-travis-image]: https://travis-ci.org/xebialabs-community/xlr-hpalm-plugin.svg?branch=master
-[xlr-hpalm-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xlr-hpalm-plugin
-[xlr-hpalm-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xlr-hpalm-plugin/badges/gpa.svg
-[xlr-hpalm-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-hpalm-plugin
-[xlr-hpalm-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
-[xlr-hpalm-plugin-license-url]: https://opensource.org/licenses/MIT
-[xlr-hpalm-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xlr-hpalm-plugin/total.svg
+[![License: MIT][xlr-hpalm-plugin-license-image]][xlr-hpalm-plugin-license-url]
+[![Github All Releases][xlr-hpalm-plugin-downloads-image]]()
+[![Code Climate][xlr-hpalm-plugin-code-climate-image]][xlr-hpalm-plugin-code-climate-url]
 
 ## Preface
 
@@ -86,7 +78,6 @@ Use this task to log out of a HP ALM server.
 *   Server - as configured in XL Release
 *   Username - Override the default configuration as needed
 *   Password - Specify only if you are overriding the default username
-
 
 #### CreateDefect
 Use this task to create a new defect in HP ALM
