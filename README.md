@@ -24,7 +24,6 @@ Per the configuration at `src/test/resources/docker/docker-compose.yml,` the por
 
 `http://localhost:35516` 
 
-
 ## Overview
 
 ### Features
