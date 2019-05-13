@@ -16,14 +16,14 @@
         var tile;
 
         var predefinedColors = [];
-        predefinedColors['De-Scoped'] = "#7E827A";
-        predefinedColors['Failed'] = "#4AA0C8";
-        predefinedColors['N/A'] = "#FFA500";
-        predefinedColors['No Run'] = "#7E8AA2";
-        predefinedColors['Not Completed'] = "#7FB2F0";
-        predefinedColors['Not Covered'] = "#45BF55";
-        predefinedColors['Passed'] = "#FFE11A";
-        predefinedColors['Reclassed_ProdDefect'] = "#FFA500";
+        predefinedColors["De-Scoped"] = "#7E827A";
+        predefinedColors["Failed"] = "#4AA0C8";
+        predefinedColors["N/A"] = "#FFA500";
+        predefinedColors["No Run"] = "#7E8AA2";
+        predefinedColors["Not Completed"] = "#7FB2F0";
+        predefinedColors["Not Covered"] = "#45BF55";
+        predefinedColors["Passed"] = "#FFE11A";
+        predefinedColors["Reclassed_ProdDefect"] = "#FFA500";
 
 
         var colorPool = [
