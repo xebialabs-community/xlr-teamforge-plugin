@@ -33,7 +33,6 @@ content = {
 }
 for additionalField in additionalFields.keys():
     content["data"][0][additionalField] = additionalFields[additionalField]
-print json.dumps(content)
 result = alm_client.create_defect(domain, project, json.dumps(content))
 defectId = result["data"][0]["id"]
 output = json.dumps(result)

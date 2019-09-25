@@ -11,17 +11,17 @@ from alm.almClientUtil import almClientUtil
 import json, ast
 cookies = ast.literal_eval(cookies)
 alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
-content = '''
-{"comment": "%s" 
-  %s
-  %s
-  %s}
-
-''' % (comment,
- ",\"name\" : \"" + title + "\"" if title else "",
- ",\"description\" : \"" + description + "\"" if description else "",
- ",\"status\" : \"" + status + "\"" if status else "")
-result = alm_client.update_defect(domain, project, defectId, content)
+content = {}
+if title not in [None, ""]:
+    content["name"] = title
+if description not in [None, ""]:
+    content["description"] = description
+if status not in [None, ""]:
+    content["status"] = status
+if comment not in [None, ""]:
+    content["comment"] = comment
+for additionalField in additionalFields.keys():
+    content[additionalField] = additionalFields[additionalField]
+result = alm_client.update_defect(domain, project, defectId, json.dumps(content))
 output = json.dumps(result)
-defectId = result['id']
 print "Successfully updated defect with id [ %s ]" % defectId

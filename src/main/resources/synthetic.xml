@@ -55,14 +55,14 @@
         <!-- Input -->
         <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
-        <property name="defectId" category="input" required="false" label="Defect Id" description="ID for the Defect" />        
+        <property name="defectId" category="input" label="Defect Id" description="ID of the Defect" />
         <property name="title" category="input" required="false" label="Defect Name" description="Title for the Defect" />
         <property name="description" category="input" required="false" label="Defect Description" description="Description for the Defect" />
-        <property name="comment" category="input" required="false" label="Comment" description="Comment for the Defect." />
         <property name="status" category="input" required="false" label="Status" description="Status for the Defect. eg. Fixed" />
+        <property name="comment" category="input" required="false" label="Comment" description="Comment for the Defect." />
+        <property name="additionalFields" category="input" required="false" kind="map_string_string" default="priority:4-Very High" description="Additional fields to populate during ticket creation" />
         <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
         <property name="output" category="output"/>
-        <property name="defectId" category="output" />
     </type>  
 
    <type type="alm.GetDefect" extends="alm.Task">
