@@ -31,24 +31,28 @@ class almClient(object):
         api_url = "/qcbin/api/authentication/sign-out"
         api_response = self.http_request.get(api_url, headers={"Content-Type":"application/json"})
         return api_response
+
     def create_defect(self, domain, project, content):
         api_url = "/qcbin/rest/domains/%s/projects/%s/defects" % (domain, project)
         api_response = self.http_request.post(api_url, headers={"Content-Type":"application/json", "Accept":"application/json"}, content = content)
         return api_response.json()
+
     def update_defect(self, domain, project, defid, content):
         api_url = "/qcbin/rest/domains/%s/projects/%s/defects/%s" % (domain, project, defid)
         api_response = self.http_request.put(api_url, headers={"Content-Type":"application/json", "Accept":"application/json"}, content = content)
         return api_response.json()
+
     def read_defect(self, domain, project, defid):
         api_url = "/qcbin/rest/domains/%s/projects/%s/defects/%s" % (domain, project, defid)
         api_response = self.http_request.get(api_url, headers={"Content-Type":"application/json", "Accept":"application/json"})
         return api_response.json()
+
     def delete_defect(self, domain, project, defid):
         api_url = "/qcbin/rest/domains/%s/projects/%s/defects/%s" % (domain, project, defid)
         api_response = self.http_request.delete(api_url, headers={"Content-Type":"text/plain", "Accept":"application/json"})
         return api_response.json()
+
     def query_status(self, domain, project, resource, query):
         api_url = "/qcbin/rest/domains/%s/projects/%s/%s?query=%s" % (domain, project, resource, query)
         api_response = self.http_request.get(api_url, headers={"Content-Type":"application/json", "Accept":"application/json"})
         return api_response.json()
-
