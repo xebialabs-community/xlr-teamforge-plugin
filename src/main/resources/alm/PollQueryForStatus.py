@@ -18,4 +18,4 @@ while True:
 	time.sleep(int(sleepInterval))
 	data = alm_client.query_status(domain, project, query)
 	print json.dumps(data)
-print "Successfully able to update defect Id [ %s ]" % defectId
+print "Successfully updated defect with id [ %s ]" % defectId

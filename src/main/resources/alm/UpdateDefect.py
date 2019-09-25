@@ -24,4 +24,4 @@ content = '''
 result = alm_client.update_defect(domain, project, defectId, content)
 output = json.dumps(result)
 defectId = result['id']
-print "Successfully able to update defect Id [ %s ]" % defectId
+print "Successfully updated defect with id [ %s ]" % defectId

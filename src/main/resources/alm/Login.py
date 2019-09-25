@@ -12,4 +12,4 @@ from alm.almClientUtil import almClientUtil
 alm_client = almClientUtil.create_alm_client(server, username, password)
 result = alm_client.login()
 cookies = str(result.get_dict())
-print "Successfully able to authenticate with alm Account"
+print "Successfully authenticated with ALM"

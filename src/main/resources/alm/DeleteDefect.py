@@ -12,5 +12,5 @@ import ast
 cookies = ast.literal_eval(cookies)
 alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
 result = alm_client.delete_defect(domain, project, defectId)
-print "Successfully able to delete defect Id [ %s ] " % defectId
+print "Successfully deleted the defect with id [ %s ] " % defectId
 

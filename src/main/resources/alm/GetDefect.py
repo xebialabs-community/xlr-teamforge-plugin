@@ -13,4 +13,4 @@ cookies = ast.literal_eval(cookies)
 alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
 result = alm_client.read_defect(domain, project, defectId)
 output = json.dumps(result)
-print "Successfully able to update defect Id [ %s ]" % defectId
+print "Successfully retrieved the defect with id [ %s ]" % defectId

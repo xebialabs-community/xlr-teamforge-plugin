@@ -28,4 +28,4 @@ content = '''
 result = alm_client.create_defect(domain, project, content)
 defectId = result['id']
 output = json.dumps(result)
-print "Successfully able to create Defect with Id [ %s ]" % result['id']
+print "Successfully created a defect with id [ %s ]" % result['id']

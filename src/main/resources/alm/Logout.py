@@ -11,4 +11,4 @@ from alm.almClientUtil import almClientUtil
 
 alm_client = almClientUtil.create_alm_client(server, username, password)
 result = alm_client.logout()
-print "Successfully able to logout with alm Account"
+print "Successful logout"

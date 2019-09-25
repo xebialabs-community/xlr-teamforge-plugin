@@ -11,7 +11,7 @@
 from alm.almClientUtil import almClientUtil
 
 if not almServer:
-    raise Exception("ALM server ID must be provided")
+    raise Exception("An ALM server must be specified")
 
 def get_row_data(item):
     row_map = {}
@@ -19,14 +19,14 @@ def get_row_data(item):
         row_map[field['Name']] = field['values'][0]['value']
     return row_map
 
-print "Performing Login"
+print "Performing login"
 alm_client = almClientUtil.create_alm_client(almServer, username, password)
 result = alm_client.login()
-print "Setting cookies and making call to query for release cycle"
+print "Setting up cookies and making the call to query for release cycle"
 alm_client = almClientUtil.create_alm_client(almServer, cookies=result.get_dict())
 test_sets = alm_client.query_status(domain, project,"test-sets", query)
 rows= {}
-print "Now finding test intsances under each test set"
+print "Finding test instances under each test set"
 for item in test_sets['entities']:
     testset_id = item['Fields'][0]['values'][0]['value']
     test_instances = alm_client.query_status(domain, project,"test-instances", "{test-set.id[%s]}&fields=id,status,name,owner" % testset_id)
