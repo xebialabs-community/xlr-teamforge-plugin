@@ -43,9 +43,10 @@
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
         <property name="title" category="input" label="Defect Name" description="Title for the Defect" />
         <property name="description" category="input" label="Defect Description" description="Description for the Defect" />
-        <property name="priority" category="input" label="Defect Priority" description="Priority for the Defect. eg 4-Very High" />
         <property name="severity" category="input" label="Defect Severity" description="Severity for the Defect. eg 2-Medium" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
+        <property name="detectedBy" category="input" description="Username the defect will be filed under - this user must already exist in ALM" />
+        <property name="additionalFields" category="input" required="false" kind="map_string_string" default="priority:4-Very High" description="Additional fields to populate during ticket creation" />
+        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the API session. Populate a cookies variable for this field by using an XLR task of type ALM Login" />
         <property name="output" category="output"/>
         <property name="defectId" category="output" />
     </type>  
