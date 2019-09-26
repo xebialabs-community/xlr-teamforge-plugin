@@ -52,7 +52,26 @@ class almClient(object):
         api_response = self.http_request.delete(api_url, headers={"Content-Type":"text/plain", "Accept":"application/json"})
         return api_response.json()
 
-    def query_status(self, domain, project, resource, query):
-        api_url = "/qcbin/api/domains/%s/projects/%s/%s?query=%s" % (domain, project, resource, query)
-        api_response = self.http_request.get(api_url, headers={"Content-Type":"application/json", "Accept":"application/json"})
-        return api_response.json()
+    def query_status(self, domain, project, resource, query, fields):
+        results_per_page = 50
+        keep_paging = True
+        page = 0
+        results = []
+        while keep_paging:
+            api_url = "/qcbin/api/domains/%s/projects/%s/%s?query=\"%s\"&fields=%s&limit=%s&offset=%s" % (
+                domain,
+                project,
+                resource,
+                query,
+                ",".join(fields),
+                results_per_page,
+                page*results_per_page
+            )
+            api_response = self.http_request.get(api_url, headers={"Content-Type":"application/json", "Accept":"application/json"})
+            results_page = api_response.json()["data"]
+            if results_page == []:
+                keep_paging = False
+            else:
+                page += 1
+                results += results_page
+        return results

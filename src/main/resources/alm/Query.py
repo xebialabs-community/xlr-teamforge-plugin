@@ -9,38 +9,16 @@
 #
 
 from alm.almClientUtil import almClientUtil
+import ast
 import json
 
-alm_client = almClientUtil.create_alm_client(almServer, username, password)
-cookies = alm_client.login()
-alm_client = almClientUtil.create_alm_client(almServer, cookies=cookies.get_dict())
-
-instances = alm_client.query_status(domain, project, resource, query, list(fields))
-
-# Note the exclusive use of lists (as opposed to the more intuitive dict) - used to retain ordering (important for detail view)
-rows = []
-for instance in instances:
-    row = []
+cookies = ast.literal_eval(cookies)
+alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
+results = alm_client.query_status(domain, project, resource, query, list(fields))
+rows = {}
+for instance in results:
+    rows[instance["id"]] = {}
     for field in list(fields):
-        row.append([field, instance[field]])
-    rows.append(row)
+        rows[instance["id"]][field] = instance[field]
 
-for val in rows[0]:
-    if val[0] == categorizeBy:
-        categorizeByIndex = rows[0].index(val)
-
-instance_totals = {}
-for row in rows:
-    category = row[categorizeByIndex][1]
-    if category is None:
-        category = "Undefined"
-    if category not in instance_totals.keys():
-        instance_totals[category] = 1
-    else:
-        instance_totals[category] += 1
-
-data = {
-    "categories": instance_totals.keys(),
-    "instance_totals": [{"name": category, "value": instance_totals[category]} for category in instance_totals.keys()],
-    "rows": rows
-}
+output = json.dumps(rows)
