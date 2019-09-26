@@ -9,12 +9,13 @@
 #
 
 from alm.almClientUtil import almClientUtil
-import ast
 from java.util import Calendar
 import json
 
-cookies = ast.literal_eval(cookies)
-alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
+alm_client = almClientUtil.create_alm_client(server, username, password)
+cookies = alm_client.login()
+alm_client = almClientUtil.create_alm_client(server, cookies=cookies.get_dict())
+
 content = {
     "data": [
         {
@@ -37,3 +38,5 @@ result = alm_client.create_defect(domain, project, json.dumps(content))
 defectId = result["data"][0]["id"]
 output = json.dumps(result)
 print "Successfully created a defect with id [ %s ]" % defectId
+
+logout = alm_client.logout()

@@ -7,10 +7,16 @@
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+
 from alm.almClientUtil import almClientUtil
-import json, ast
-cookies = ast.literal_eval(cookies)
-alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
+import json
+
+alm_client = almClientUtil.create_alm_client(server, username, password)
+cookies = alm_client.login()
+alm_client = almClientUtil.create_alm_client(server, cookies=cookies.get_dict())
+
 result = alm_client.read_defect(domain, project, defectId)
 output = json.dumps(result)
 print "Successfully retrieved the defect with id [ %s ]" % defectId
+
+logout = alm_client.logout()

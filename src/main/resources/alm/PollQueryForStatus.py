@@ -8,14 +8,22 @@
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 from alm.almClientUtil import almClientUtil
-import json, ast
-cookies = ast.literal_eval(cookies)
-alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
-data = None
-logger.info("print initial query")
-logger.info(query)
-while True:
-	time.sleep(int(sleepInterval))
-	data = alm_client.query_status(domain, project, query)
-	print json.dumps(data)
-print "Successfully updated defect with id [ %s ]" % defectId
+import json
+
+alm_client = almClientUtil.create_alm_client(server, username, password)
+cookies = alm_client.login()
+alm_client = almClientUtil.create_alm_client(server, cookies=cookies.get_dict())
+
+data = alm_client.query_status(domain, project, resource, query, criteria.keys())
+
+diff = False
+for instance in data:
+    for criterion in criteria.keys():
+        if criteria[criterion] != instance[criterion]:
+            logout = alm_client.logout()
+            task.setStatusLine("Waiting for criteria to be met...")
+            task.schedule("alm/PollQueryForStatus.py")
+            diff = True
+            break
+    if diff:
+        break

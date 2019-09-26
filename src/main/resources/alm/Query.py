@@ -9,11 +9,12 @@
 #
 
 from alm.almClientUtil import almClientUtil
-import ast
 import json
 
-cookies = ast.literal_eval(cookies)
-alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
+alm_client = almClientUtil.create_alm_client(server, username, password)
+cookies = alm_client.login()
+alm_client = almClientUtil.create_alm_client(server, cookies=cookies.get_dict())
+
 results = alm_client.query_status(domain, project, resource, query, list(fields))
 rows = {}
 for instance in results:
@@ -22,3 +23,5 @@ for instance in results:
         rows[instance["id"]][field] = instance[field]
 
 output = json.dumps(rows)
+
+logout = alm_client.logout()

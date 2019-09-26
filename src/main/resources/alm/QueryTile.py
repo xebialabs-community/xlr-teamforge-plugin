@@ -44,3 +44,5 @@ data = {
     "instance_totals": [{"name": category, "value": instance_totals[category]} for category in instance_totals.keys()],
     "rows": rows
 }
+
+logout = alm_client.logout()

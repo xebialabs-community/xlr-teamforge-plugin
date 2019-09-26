@@ -19,18 +19,18 @@
 
 
     <type type="alm.Task" extends="xlrelease.PythonScript" virtual="true">
-        <!-- Plugin -->
         <property name="iconLocation" hidden="true" default="alm/alm.png"/>
         <property name="taskColor" hidden="true" default="#0075A9"/>
         <property name="server" category="input" label="Server" description="The alm server definition to use" required="true" referenced-type="alm.Server" kind="ci"/>
-
-
+        <property category="input" name="username" required="false"
+                  description="Optionally, override the username used to connect to the server"/>
+        <property category="input" name="password" password="true" required="false"
+                  description="Optionally, override the password used to connect to the server"/>
     </type>
 
     <type type="alm.Login" extends="alm.Task">
         <property name="username" category="input" required="false" />
         <property name="password" password="true" category="input" required="false" />
-        <!-- outputs -->
         <property name="cookies" password="true" category="output" required="false" label="Auth Cookies" description="Cookies for the user session. Set it into a variable and use the variable in other tasks" />
     </type>
     <type type="alm.Logout" extends="alm.Task">
@@ -38,7 +38,6 @@
         <property name="password" password="true" category="input" required="false" />
     </type>
     <type type="alm.CreateDefect" extends="alm.Task">
-        <!-- Input -->
         <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
         <property name="title" category="input" label="Defect Name" description="Title for the Defect" />
@@ -46,46 +45,39 @@
         <property name="severity" category="input" label="Defect Severity" description="Severity for the Defect. eg 2-Medium" />
         <property name="detectedBy" category="input" description="Username the defect will be filed under - this user must already exist in ALM" />
         <property name="additionalFields" category="input" required="false" kind="map_string_string" default="priority:4-Very High" description="Additional fields to populate during ticket creation" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the API session. Populate a cookies variable for this field by using an XLR task of type ALM Login" />
         <property name="output" category="output"/>
         <property name="defectId" category="output" />
     </type>  
 
     <type type="alm.UpdateDefect" extends="alm.Task">
-        <!-- Input -->
         <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
         <property name="defectId" category="input" label="Defect Id" description="ID of the Defect" />
         <property name="fields" category="input" required="false" kind="map_string_string" default="priority:4-Very High" description="Fields to populate during the ticket update" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
         <property name="output" category="output"/>
     </type>  
 
    <type type="alm.GetDefect" extends="alm.Task">
-        <!-- Input -->
         <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
         <property name="defectId" category="input" required="false" label="Defect Id" description="ID for the Defect" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
         <property name="output" category="output"/>
     </type>  
 
    <type type="alm.DeleteDefect" extends="alm.Task">
-        <!-- Input -->
         <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
         <property name="defectId" category="input" required="false" label="Defect Id" description="ID for the Defect" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
         <property name="output" category="output"/>
     </type>
 
     <type type="alm.PollQueryForStatus" extends="alm.Task" >
         <property name="domain" category="input" label="Domain Name" description="The name of the Domain" kind="string" />    
         <property name="project" category="input" label="Project Name" description="The name of the Project" kind="string" />    
+        <property name="resource" category="input" description="The resource collection to query" kind="string" default="defects" />
         <property name="query" category="input" required="true" label="Query for finding records" description="eg. {id[>=1 And NOT = 5]},  eg. {status[(NOT Ready or Design]} " />
         <property name="pollingInterval" category="input" required="true" default="10" description="Polling Interval" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
-
+        <property name="criteria" category="input" required="true" description="Fields and values to wait on" kind="map_string_string" default="status:Closed"/>
     </type>
 
     <type type="alm.Query" extends="alm.Task" virtual="true">
@@ -95,7 +87,6 @@
         <property name="fields" category="input" description="The fields to return for the query" kind="set_of_string"
                   default="id,name,description,status"/>
         <property name="query" category="input" size="large" description="ALM query.  For example: (id &gt; 200 ; owner = &apos;sa&apos;) || (status &lt; &apos;5-Ready&apos; ; owner = &apos;sa&apos;)" />
-        <property name="cookies" password="true" category="input" required="false" label="Auth Cookies" description="Cookies for the user session. Capture using Variable from Set from Output of Login Task" />
         <property name="output" category="output"/>
     </type>
     <!-- ============ UI extensions: ============ -->

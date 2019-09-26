@@ -8,9 +8,12 @@
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 from alm.almClientUtil import almClientUtil
-import ast
-cookies = ast.literal_eval(cookies)
-alm_client = almClientUtil.create_alm_client(server, cookies = cookies)
+
+alm_client = almClientUtil.create_alm_client(server, username, password)
+cookies = alm_client.login()
+alm_client = almClientUtil.create_alm_client(server, cookies=cookies.get_dict())
+
 result = alm_client.delete_defect(domain, project, defectId)
 print "Successfully deleted the defect with id [ %s ] " % defectId
 
+logout = alm_client.logout()
