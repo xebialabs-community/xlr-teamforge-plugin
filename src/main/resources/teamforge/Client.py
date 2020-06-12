@@ -184,9 +184,15 @@ def parseApiResponse(data):
     for key in cleanData:
         if key == "flexFields":
             for subKey in cleanData['flexFields']:
-                flexFields[subKey['name']] = subKey['values'][0]
+                try:
+                    flexFields[subKey['name']] = subKey['values'][0]
+                except:
+                    logger.error("Field Exception in flexFields")
         else:
-            fields[key] = cleanData[key]
+            try:
+                fields[key] = cleanData[key]
+            except:
+                    logger.error("Field Exception in Fields")
     return fields, flexFields
 
 
