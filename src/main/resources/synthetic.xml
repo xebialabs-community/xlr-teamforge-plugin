@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright 2020 XEBIALABS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <type type="teamforge.Server" extends="xlrelease.Configuration" label="Teamforge: Server">
+        <property name="scriptLocation" hidden="true" default="teamforge/TestConnection.py"/>
+        <property name="url" required="true" label="Teamforge API url" description="Teamforge API url address"/>
+        <property name="username" required="true" label="Teamforge Username" description="Teamforge Username"/>
+        <property name="password" required="true" password="true" label="Teamforge Password" description="Teamforge Password"/>
+    </type>
+
+    <type type="teamforge.Task" extends="xlrelease.PythonScript" virtual="true">
+        <property name="iconLocation" hidden="true" default="teamforge/teamforge.png"/>
+        <property name="taskColor" hidden="true" default="#2A6190"/>
+        <property name="server" category="input" required="true" label="Server" kind="ci" referenced-type="teamforge.Server"
+                  description="The TeamForge server definition. See the shared configuration" />
+    </type>
+
+    <type type="teamforge.GetArtifactDetails" extends="teamforge.Task">
+        <property name="server" category="input" required="true" label="Server" kind="ci" referenced-type="teamforge.Server"
+                  description="The TeamForge server definition. See the shared configuration" />
+        <property name="artifactId" category="input" required="true"/>
+        <property name="fields" category="output" kind="map_string_string"/>
+        <property name="flexFields" category="output" kind="map_string_string"/>
+    </type>
+
+    <type type="teamforge.GetArtifactChildren" extends="teamforge.Task">
+        <property name="server" category="input" required="true" label="Server" kind="ci" referenced-type="teamforge.Server"
+                  description="The TeamForge server definition. See the shared configuration" />
+        <property name="parentArtifactId" category="input" required="true"/>
+        <property name="childrenArtifactIds" description="Children Artifact Ids" category="output" kind="list_of_string"/>
+    </type>
+
+    <type type="teamforge.GetAssociations" extends="teamforge.Task">
+        <property name="server" category="input" required="true" label="Server" kind="ci" referenced-type="teamforge.Server"
+                  description="The TeamForge server definition. See the shared configuration" />
+        <property name="objectId" category="input" required="true"/>
+        <property name="fields" category="output" kind="map_string_string"/>
+    </type>
+
+    <type type="teamforge.UpdateArtifact" extends="teamforge.Task">
+        <property name="server" category="input" required="true" label="Server" kind="ci" referenced-type="teamforge.Server"
+                  description="The TeamForge server definition. See the shared configuration" />
+        <property name="artifactIds" category="input" kind="list_of_string" required="true"/>
+        <property name="status" category="input" required="true"/>
+        <property name="comment" category="input" required="false"/>
+        <property name="fields" category="output" kind="map_string_string"/>
+        <property name="flexFields" category="output" kind="map_string_string"/>
+    </type>
+
+    <type type="teamforge.CreateAssociations" extends="teamforge.Task">
+        <property name="server" category="input" required="true" label="Server" kind="ci" referenced-type="teamforge.Server"
+                  description="The TeamForge server definition. See the shared configuration" />
+        <property name="targetId" description="Parent artifact id to which we are making the association(s)" category="input" required="true"/>
+        <property name="objectIds" description="The list of artifact ids we are associating to the parent" category="input" kind="list_of_string" required="true"/>
+        <property name="fields" category="output" kind="map_string_string"/>
+    </type>
+
+</synthetic>
