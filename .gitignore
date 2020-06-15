@@ -6,6 +6,7 @@ bin
 .settings
 .project
 .pydevproject
+.xlvals
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
