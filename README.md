@@ -8,10 +8,10 @@
 
 [xlr-teamforge-plugin-travis-image]: https://api.travis-ci.org/xebialabs-community/xlr-teamforge-plugin.svg?branch=master
 [xlr-teamforge-plugin-travis-url]: https://travis-ci.org/xebialabs-community/xlr-teamforge-plugin
-[xlr-teamforge-plugin-codacy-image]: https://api.codacy.com/project/badge/Grade/99114736d2b9428f813bcd24f52e2a61
-[xlr-teamforge-plugin-codacy-url]: https://www.codacy.com/app/zvercodebender/xlr-endevor-plugin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xebialabs-community/xlr-endevor-plugin&amp;utm_campaign=Badge_Grade
-[xlr-teamforge-plugin-code-climate-image]: https://codeclimate.com/github/xebialabs-community/xlr-teamforge-plugin/badges/gpa.svg
-[xlr-teamforge-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-teamforge-plugin
+[xlr-teamforge-plugin-codacy-image]: https://app.codacy.com/project/badge/Grade/ceff83723d5546f6b1a834d12ef3db6b
+[xlr-teamforge-plugin-codacy-url]: https://www.codacy.com/gh/xebialabs-community/xlr-teamforge-plugin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xebialabs-community/xlr-teamforge-plugin&amp;utm_campaign=Badge_Grade
+[xlr-teamforge-plugin-code-climate-image]: https://api.codeclimate.com/v1/badges/3971a2f0ea32fc647da5/maintainability
+[xlr-teamforge-plugin-code-climate-url]: https://codeclimate.com/github/xebialabs-community/xlr-teamforge-plugin/maintainability
 [xlr-teamforge-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [xlr-teamforge-plugin-license-url]: https://opensource.org/licenses/MIT
 [xlr-teamforge-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xlr-teamforge-plugin/total.svg
