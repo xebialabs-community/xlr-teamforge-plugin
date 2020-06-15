@@ -9,10 +9,9 @@
 #
 
 xlr:
-  image: xebialabsunsupported/docker-xlr:9.5.0
+  image: xebialabsunsupported/docker-xlr:9.6.1
   volumes:
     - ~/xl-licenses:/license
     - ./../../../../:/data
   ports:
     - "5516:5516"
-
