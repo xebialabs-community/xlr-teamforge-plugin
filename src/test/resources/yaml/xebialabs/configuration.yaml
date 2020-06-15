@@ -1,0 +1,11 @@
+---
+apiVersion: xl-release/v1
+kind: Templates
+spec:
+- directory: teamforge
+  children:
+  - name: teamforge
+    type: teamforge.Server
+    url: https://adopt-ctf.collab.net
+    username: !value "teamforge_Server_teamforge_username"
+    password: !value "teamforge_Server_teamforge_password"

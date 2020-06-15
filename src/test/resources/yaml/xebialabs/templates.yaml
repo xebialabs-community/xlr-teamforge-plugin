@@ -1,0 +1,75 @@
+---
+apiVersion: xl-release/v1
+kind: Templates
+spec:
+- directory: teamforge
+  children:
+  - template: testing
+    scheduledStartDate: 2020-06-15T13:00:00Z
+    phases:
+    - phase: Testing
+      tasks:
+      - name: Get Artifact
+        type: teamforge.GetArtifactDetails
+        server: teamforge
+        artifactId: ${artifactID}
+        variableMapping:
+          pythonScript.flexFields: ${flexFields}
+          pythonScript.fields: ${fields}
+      - name: Get Artifact Children
+        type: teamforge.GetArtifactChildren
+        server: teamforge
+        parentArtifactId: ${artifactID}
+        variableMapping:
+          pythonScript.childrenArtifactIds: ${childArtifacts}
+      - name: Get Artifact Associations
+        type: teamforge.GetAssociations
+        server: teamforge
+        objectId: ${artifactID}
+        variableMapping:
+          pythonScript.fields: ${fields}
+      - name: Get artifacts
+        type: xlrelease.UserInputTask
+        description: Please enter the required information below.
+        variables:
+        - associateIDs
+      - name: Associate Artifacts
+        type: teamforge.CreateAssociations
+        server: teamforge
+        targetId: ${artifactID}
+        variableMapping:
+          pythonScript.objectIds: ${associateIDs}
+          pythonScript.fields: ${fields}
+      - name: Update Artifact
+        type: teamforge.UpdateArtifact
+        server: teamforge
+        artifactIds:
+        - ${artifactID}
+        ^status: Open
+        comment: Test message
+        variableMapping:
+          pythonScript.flexFields: ${flexFields}
+          pythonScript.fields: ${fields}
+      color: '#0079BC'
+    variables:
+    - type: xlrelease.StringVariable
+      key: artifactID
+    - type: xlrelease.MapStringStringVariable
+      key: fields
+      requiresValue: false
+      showOnReleaseStart: false
+    - type: xlrelease.MapStringStringVariable
+      key: flexFields
+      requiresValue: false
+      showOnReleaseStart: false
+    - type: xlrelease.ListStringVariable
+      key: childArtifacts
+      requiresValue: false
+      showOnReleaseStart: false
+    - type: xlrelease.ListStringVariable
+      key: associateIDs
+      requiresValue: false
+      showOnReleaseStart: false
+    scriptUsername: !value "xlrelease_scriptUsername"
+    scriptUserPassword: !value "xlrelease_scriptUserPassword"
+    riskProfile: Default risk profile
