@@ -1,0 +1,18 @@
+language: java
+jdk:
+- oraclejdk7
+- openjdk6
+deploy:
+  provider: releases
+  api_key:
+    secure: wMBBeQCmpUyif4/tDzM6LrhH0fNQ2kRwEkYCDlqHCyeAOENpwtogC8RC1LRO468/aEvntNIz7/J6BBmRZ724s8UXulHyWjgfeLT8xEOcdq6HDP28xZ2J7C4VkjrS/O4OTB3W1cJUqbo3RWiSyUBkiZFXZN14NqKNWGBGh/yoyIjBUKgBpzhN0ijwKAv/LKk+akEOWmhKM/dpr0XZC3TTk5GN4Qqfdh3PVcii8jfAYCjwdOz9Jkrm+3z44dp4Vgw25iVqUe+8OulKMSz++AODuXGRUTD2N1TnF9WPIbtLGCo/RM3SXXH7XZvIQ5BN2k/rle8jQdbHW2sqg+CDbT+2/RPxlqIF7tydi7hJHLCtvJi5+MdXFDTHVBEZOvHMj+hAzBS1mbpB+IvymH/J7ns2fxicrFQuM2iznjWFtiWlcA+P6IUZTyzpGoeTsBwWjpLUQg6Hi3EWPWCur6Ydk8iq8Tm6RgUZ5IpA25MlpOxvtjkaXrBy76mFWPY3SEHxl3ZQID6lOoiSoH73FzYaLcEKfmc4edEZ+noCiBKfswCGkklpeB5zXqeDzBUiKJ9I6a2hiciwQLL0fBwQxPPya6hg9Bljz2Q+N63qz7OO5/oqbRoePz/c8Jv+wwQ3nl5+BVPLsmZmH5i3TbZUvBYNMT2TmQRJCd+NVNGcnrD+hPXWBr4=
+  file_glob: true
+  file: build/libs/*
+  skip_cleanup: true
+  on:
+    all_branches: true
+    tags: true
+    repo: xebialabs-community/xlr-teamforge-plugin
+notifications:
+  slack:
+    secure: tAyBk+cR6aqqZ9aHgnpyGs0wViE3r1F6Oh1cQm58uSzunfems1SOodEWA1s8xdaVesRYa0VGAxlb/qVyWIyBQ2XHSrnFp1nwIIIL7f3v6V9/y7l3gpp2zi5BqZy9nT0UtX7wnefXCOVd/Ga2M343ux/Ad7NQlooq/gBdV/g1osw=
